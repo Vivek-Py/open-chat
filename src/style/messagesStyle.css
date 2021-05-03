@@ -1,0 +1,9 @@
+#myMsg {
+  display: flex;
+  justify-content: flex-end;
+  background-color: aliceblue;
+}
+
+#otherMsg {
+  background-color: antiquewhite;
+}
