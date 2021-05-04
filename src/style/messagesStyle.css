@@ -1,9 +1,44 @@
+.msgList {
+  height: 80vh !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0px 5px;
+  margin-top: 10px;
+}
+
 #myMsg {
   display: flex;
   justify-content: flex-end;
   background-color: aliceblue;
+  border-radius: 12px;
 }
 
 #otherMsg {
   background-color: antiquewhite;
+  border-radius: 12px;
+}
+
+.msgIdentifier {
+  display: grid;
+  column-gap: 5px;
+  margin: 6px 0px;
+}
+
+.myMsgIdentifier {
+  grid-template-columns: auto auto;
+}
+
+.otherMsgIdentifier {
+  grid-template-columns: auto auto;
+}
+.userProfile {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+
+#userImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }

@@ -1,0 +1,10 @@
+.fileAttach {
+  height: 0;
+  width: 0;
+}
+
+.fileAttachIcon {
+  font-size: 30px;
+  opacity: 0.6;
+  padding-top: 7px;
+}

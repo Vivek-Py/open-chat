@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     db.collection("chats")
       .orderBy("timestamp", "desc")
-      .limit("5")
+      .limit("15")
       .onSnapshot((snap) => {
         let documents = [];
         snap.forEach((doc) => documents.push({ ...doc.data(), id: doc.id }));
@@ -46,6 +46,10 @@ function App() {
     fire.auth().signInWithEmailAndPassword("test@email.com", "testPassword");
   }
 
+  function handleLogin2() {
+    fire.auth().signInWithEmailAndPassword("test2@email.com", "testPassword");
+  }
+
   // Function to logout
   function handleLogout() {
     fire.auth().signOut();
@@ -66,17 +70,19 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <LoggedIn
-          chats={chats}
-          setChats={setChats}
-          msg={msg}
-          setMsg={setMsg}
-          user={user}
-          sendMsg={sendMsg}
-          handleLogout={handleLogout}
-        />
+        <>
+          <LoggedIn
+            chats={chats}
+            setChats={setChats}
+            msg={msg}
+            setMsg={setMsg}
+            user={user}
+            sendMsg={sendMsg}
+            handleLogout={handleLogout}
+          />
+        </>
       ) : (
-        <LoggedOut handleLogin={handleLogin} />
+        <LoggedOut handleLogin={handleLogin} handleLogin2={handleLogin2} />
       )}
     </div>
   );

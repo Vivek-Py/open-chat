@@ -1,6 +1,10 @@
 #sendContainer {
   margin-top: 5px;
   display: grid;
-  grid-template-columns: 5fr auto;
+  grid-template-columns: 5fr auto auto;
   column-gap: 15px;
+
+  position: absolute;
+  width: 95%;
+  bottom: 50px;
 }
