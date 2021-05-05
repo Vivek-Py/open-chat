@@ -1,0 +1,14 @@
+.headerContainer {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  border-radius: 10px;
+  margin-top: 5px;
+  background-color: white;
+}
+
+.appName {
+  font-family: "Lobster", cursive;
+  font-size: 27px;
+  text-align: center;
+  padding-bottom: 5px;
+}

@@ -4,12 +4,14 @@ import { db, fire } from "./firebase/Config";
 import firebase from "firebase";
 import LoggedIn from "./components/LoggedIn";
 import LoggedOut from "./components/LoggedOut";
+import Profile from "./components/Profile";
 
 function App() {
   // useState Values
   const [chats, setChats] = useState([]);
   const [msg, setMsg] = useState(null);
   const [user, setUser] = useState(null);
+  const [toggle, setToggle] = useState(true);
 
   // Acquire data from firestore databse
   useEffect(() => {
@@ -71,15 +73,19 @@ function App() {
     <div className="App">
       {user ? (
         <>
-          <LoggedIn
-            chats={chats}
-            setChats={setChats}
-            msg={msg}
-            setMsg={setMsg}
-            user={user}
-            sendMsg={sendMsg}
-            handleLogout={handleLogout}
-          />
+          {toggle ? (
+            <Profile user={user} />
+          ) : (
+            <LoggedIn
+              chats={chats}
+              setChats={setChats}
+              msg={msg}
+              setMsg={setMsg}
+              user={user}
+              sendMsg={sendMsg}
+              handleLogout={handleLogout}
+            />
+          )}
         </>
       ) : (
         <LoggedOut handleLogin={handleLogin} handleLogin2={handleLogin2} />

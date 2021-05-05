@@ -3,11 +3,15 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import React from "react";
+import FormatPaintIcon from "@material-ui/icons/FormatPaint";
+import React, { useState } from "react";
+import "../style/headerStyle.css";
 
 const Header = (props) => {
   const { handleLogout } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [headerColor, setHeaderColor] = useState("");
+  const [appNameColor, setAppNameColor] = useState("");
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -17,7 +21,7 @@ const Header = (props) => {
     setAnchorEl(null);
   };
   return (
-    <>
+    <div className="headerContainer" style={{ backgroundColor: headerColor }}>
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
@@ -42,7 +46,26 @@ const Header = (props) => {
           <CloseIcon /> &nbsp; Close
         </MenuItem>
       </Menu>
-    </>
+      <header className="appName" style={{ color: appNameColor }}>
+        openChat
+      </header>
+      <Button
+        onClick={() => {
+          if (headerColor === "yellow") {
+            setHeaderColor("white");
+            setAppNameColor("black");
+          } else if (headerColor === "white") {
+            setHeaderColor("coral");
+            setAppNameColor("white");
+          } else {
+            setAppNameColor("black");
+            setHeaderColor("yellow");
+          }
+        }}
+      >
+        <FormatPaintIcon />
+      </Button>
+    </div>
   );
 };
 
