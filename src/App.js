@@ -11,7 +11,7 @@ function App() {
   const [chats, setChats] = useState([]);
   const [msg, setMsg] = useState(null);
   const [user, setUser] = useState(null);
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   // Acquire data from firestore databse
   useEffect(() => {
@@ -74,7 +74,7 @@ function App() {
       {user ? (
         <>
           {toggle ? (
-            <Profile user={user} />
+            <Profile user={user} setToggle={setToggle} toggle={toggle} />
           ) : (
             <LoggedIn
               chats={chats}
@@ -84,6 +84,8 @@ function App() {
               user={user}
               sendMsg={sendMsg}
               handleLogout={handleLogout}
+              setToggle={setToggle}
+              toggle={toggle}
             />
           )}
         </>

@@ -4,14 +4,16 @@ import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import FormatPaintIcon from "@material-ui/icons/FormatPaint";
+import ChatIcon from "@material-ui/icons/Chat";
 import React, { useState } from "react";
 import "../style/headerStyle.css";
 
 const Header = (props) => {
-  const { handleLogout } = props;
+  const { handleLogout, setToggle, toggle, setListColor } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [headerColor, setHeaderColor] = useState("");
   const [appNameColor, setAppNameColor] = useState("");
+  const [dark, setDark] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,7 +29,7 @@ const Header = (props) => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MenuIcon />
+        <MenuIcon style={{ color: dark ? "white" : "black" }} />
       </Button>
       <Menu
         id="simple-menu"
@@ -39,8 +41,18 @@ const Header = (props) => {
         <MenuItem onClick={handleLogout}>
           <ExitToAppIcon /> &nbsp; Logout
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <PermIdentityIcon /> &nbsp; Profile
+        <MenuItem onClick={() => setToggle(!toggle)}>
+          {toggle ? (
+            <>
+              <ChatIcon />
+              &nbsp; Chat
+            </>
+          ) : (
+            <>
+              <PermIdentityIcon />
+              &nbsp; Profile
+            </>
+          )}
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <CloseIcon /> &nbsp; Close
@@ -51,19 +63,25 @@ const Header = (props) => {
       </header>
       <Button
         onClick={() => {
-          if (headerColor === "yellow") {
+          if (headerColor === "black") {
             setHeaderColor("white");
             setAppNameColor("black");
+            setListColor("white");
+            setDark(false);
           } else if (headerColor === "white") {
-            setHeaderColor("coral");
-            setAppNameColor("white");
-          } else {
+            setHeaderColor("#f9f1f0");
             setAppNameColor("black");
-            setHeaderColor("yellow");
+            setListColor("#f8afa6");
+            setDark(false);
+          } else {
+            setAppNameColor("white");
+            setHeaderColor("black");
+            setListColor("black");
+            setDark(true);
           }
         }}
       >
-        <FormatPaintIcon />
+        <FormatPaintIcon style={{ color: dark ? "white" : "black" }} />
       </Button>
     </div>
   );

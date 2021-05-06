@@ -1,5 +1,5 @@
 .App {
-  width: 95%;
+  max-width: 95%;
   margin: auto;
   overflow-x: hidden;
   overflow-y: hidden;

@@ -4,7 +4,7 @@ import ListItem from "@material-ui/core/ListItem";
 import "../style/messagesStyle.css";
 
 const Messages = (props) => {
-  const { chats, user } = props;
+  const { chats, user, listColor } = props;
 
   const messagesEndRef = useRef(null);
 
@@ -47,7 +47,7 @@ const Messages = (props) => {
   }
 
   return (
-    <div className="msgList">
+    <div className="msgList" style={{ backgroundColor: listColor }}>
       <List>{chats.map((doc) => msgItems(doc))}</List>
       <div ref={messagesEndRef}></div>
     </div>
