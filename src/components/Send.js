@@ -3,7 +3,6 @@ import SendIcon from "@material-ui/icons/Send";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import "../style/sendStyle.css";
-import Upload from "./Upload";
 
 const Send = (props) => {
   const { msg, setMsg, sendMsg } = props;
@@ -15,7 +14,6 @@ const Send = (props) => {
         id="inputArea"
         value={msg}
       />
-      <Upload />
       <Button
         variant="outlined"
         color="primary"

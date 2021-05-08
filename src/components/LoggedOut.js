@@ -1,11 +1,45 @@
 import React from "react";
+import Logform from "./Logform";
 
 const LoggedOut = (props) => {
-  const { handleLogin, handleLogin2 } = props;
+  const {
+    handleLogin,
+    setEmail,
+    setPassword,
+    emailError,
+    passwordError,
+    clearErrors,
+    setUser,
+    handleSignup,
+    user,
+    email,
+    setEmailError,
+    password,
+    username,
+    setUsername,
+    userError,
+    setUserError,
+  } = props;
   return (
     <>
-      <button onClick={handleLogin}>Login with test data</button>
-      <button onClick={handleLogin2}>Login with test data</button>
+      <Logform
+        handleLogin={handleLogin}
+        setEmail={setEmail}
+        setPassword={setPassword}
+        clearErrors={clearErrors}
+        user={user}
+        setUser={setUser}
+        email={email}
+        setEmailError={setEmailError}
+        password={password}
+        passwordError={passwordError}
+        emailError={emailError}
+        handleSignup={handleSignup}
+        username={username}
+        setUsername={setUsername}
+        userError={userError}
+        setUserError={setUserError}
+      />
     </>
   );
 };

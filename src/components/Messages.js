@@ -38,7 +38,7 @@ const Messages = (props) => {
               <img id="userImage" src="https://picsum.photos/49/49" alt="O" />
             </div>
             &nbsp; &nbsp;
-            {doc.msgBody}
+            {doc.userName}: {doc.msgBody}
           </ListItem>
           <div className="blankArea"></div>
         </div>

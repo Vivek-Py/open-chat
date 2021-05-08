@@ -10,8 +10,21 @@ function App() {
   // useState Values
   const [chats, setChats] = useState([]);
   const [msg, setMsg] = useState(null);
-  const [user, setUser] = useState(null);
   const [toggle, setToggle] = useState(false);
+
+  // useState values for authentication
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userError, setUserError] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const clearErrors = () => {
+    setEmailError("");
+    setPasswordError("");
+  };
 
   // Acquire data from firestore databse
   useEffect(() => {
@@ -44,22 +57,66 @@ function App() {
   };
 
   // Function to login
-  function handleLogin() {
-    fire.auth().signInWithEmailAndPassword("test@email.com", "testPassword");
-  }
-
-  function handleLogin2() {
-    fire.auth().signInWithEmailAndPassword("test2@email.com", "testPassword");
-  }
-
+  const handleLogin = () => {
+    if (userError) {
+      // Do nothing
+      window.alert("Please Enter Username.");
+    } else {
+      clearErrors();
+      fire
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .catch((err) => {
+          switch (err.code) {
+            case "auth/invalid-email":
+            case "auth/user-disabled":
+            case "auth/user-not-found":
+              setEmailError(err.message);
+              break;
+            case "auth/wrong-password":
+              setPasswordError(err.message);
+              break;
+            default:
+          }
+        });
+    }
+  };
   // Function to logout
   function handleLogout() {
     fire.auth().signOut();
+    setEmail("");
+    setPassword("");
   }
+
+  // Function to signup
+  const handleSignup = () => {
+    if (userError) {
+      // Do Nothing
+      window.alert("Please Enter Username.");
+    } else {
+      clearErrors();
+      fire
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .catch((err) => {
+          switch (err.code) {
+            case "auth/email-already-in-use":
+            case "auth/invalid-email":
+              setEmailError(err.message);
+              break;
+            case "auth/weak-password":
+              setPasswordError(err.message);
+              break;
+            default:
+          }
+        });
+    }
+  };
 
   // Function for sending messages
   function sendMsg() {
     let data = {
+      userName: username,
       msgBody: msg,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       uid: user.uid,
@@ -90,7 +147,24 @@ function App() {
           )}
         </>
       ) : (
-        <LoggedOut handleLogin={handleLogin} handleLogin2={handleLogin2} />
+        <LoggedOut
+          handleLogin={handleLogin}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          clearErrors={clearErrors}
+          user={user}
+          setUser={setUser}
+          email={email}
+          setEmailError={setEmailError}
+          password={password}
+          passwordError={passwordError}
+          emailError={emailError}
+          handleSignup={handleSignup}
+          username={username}
+          setUsername={setUsername}
+          setUserError={setUserError}
+          userError={userError}
+        />
       )}
     </div>
   );

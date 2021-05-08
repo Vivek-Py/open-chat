@@ -1,7 +1,7 @@
 #sendContainer {
   margin-top: 5px;
   display: grid;
-  grid-template-columns: 5fr auto auto;
+  grid-template-columns: 5fr auto;
   column-gap: 15px;
 
   position: absolute;
