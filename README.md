@@ -4,13 +4,12 @@ This app lets logged in users to chat among themselves, built with React and Fir
 Here are some of the images of the app:
 
 <p align="center">
-<img src="./img/log.jpg">
-<img src="./img/home.jpg">
+<img src="./img/log.jpg" width="200">
+<img src="./img/home.jpg" width="200>
+<br />
 </p>
 
-## Available Scripts
-
-In the project directory, you can run:
+## In the project directory, you can run:
 
 ### `npm start`
 
